@@ -11,7 +11,7 @@ public class ItemResource {
 
     @GetMapping("/items")
     public String test() {
-        return "Hello world!";
+        return "Hello world! ";
     }
 
 }
