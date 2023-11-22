@@ -10,4 +10,3 @@ https://start.spring.io/#!type=gradle-project&language=java&platformVersion=3.1.
 ./gradlew bootRun
 
 h2 url: jdbc:h2:file:./build/h2db/data/demo
-
