@@ -18,9 +18,7 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
@@ -34,13 +32,24 @@ jobs:
       uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
       with:
         arguments: build
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
     - name: Test with Gradle
       uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
       with:
         arguments: test
+  package:
+    runs-on: ubuntu-latest
+    steps:
     - uses: actions/upload-artifact@v3
       with:
         name: Package
         path: build/libs
-    - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag server:$(date +%s)
