@@ -25,7 +25,12 @@ public class ItemResourceIT {
         int databaseSizeBeforeCreate = itemRepository.findAll().size();
         assertThat(databaseSizeBeforeCreate).isEqualTo(0);
 
-//        List<Item> itemList = itemRepository.findAll();
-//        assertThat(itemList).hasSize(databaseSizeBeforeCreate + 1);
+        Item item = new Item();
+//        item.setId(6);
+        item.setName("Pierre");
+        itemRepository.save(item);
+
+        List<Item> itemList = itemRepository.findAll();
+        assertThat(itemList).hasSize(databaseSizeBeforeCreate + 1);
     }
 }
